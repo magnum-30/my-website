@@ -1,17 +1,19 @@
-const toast =
-    document.getElementById("toast");
+// ============================================
+// الجزيئات الزرقاء
+// ============================================
 
 const particlesContainer =
     document.getElementById("particles");
 
 
-// ========================================
-// نقاط الخلفية
-// ========================================
+const particleCount = 24;
 
-const particleCount = 22;
 
-for (let i = 0; i < particleCount; i++) {
+for (
+    let i = 0;
+    i < particleCount;
+    i++
+) {
 
     const particle =
         document.createElement("span");
@@ -22,25 +24,17 @@ for (let i = 0; i < particleCount; i++) {
     particle.style.left =
         Math.random() * 100 + "%";
 
-    particle.style.top =
-        Math.random() * 100 + "%";
-
     particle.style.animationDuration =
-        (7 + Math.random() * 8) + "s";
+        (8 + Math.random() * 10) + "s";
 
     particle.style.animationDelay =
-        (Math.random() * 7) + "s";
+        (-Math.random() * 12) + "s";
 
-    const size =
-        Math.random() > 0.8
-            ? 3
-            : 2;
+    particle.style.transform =
+        `rotate(${Math.random() * 360}deg)`;
 
-    particle.style.width =
-        size + "px";
-
-    particle.style.height =
-        size + "px";
+    particle.style.opacity =
+        0.3 + Math.random() * 0.5;
 
     particlesContainer.appendChild(
         particle
@@ -48,81 +42,56 @@ for (let i = 0; i < particleCount; i++) {
 }
 
 
-// ========================================
-// روابط الحسابات
-// ========================================
 
-document
-    .querySelectorAll(".account")
-    .forEach(account => {
+// ============================================
+// عداد الزيارات
+// ============================================
+//
+// هذا العداد محلي على الجهاز.
+// يعني كل متصفح يحفظ عداده الخاص.
+// ============================================
 
-        account.addEventListener(
-            "click",
-            event => {
-
-                const link =
-                    account.getAttribute("href");
-
-                if (
-                    !link ||
-                    link === "#"
-                ) {
-
-                    event.preventDefault();
-
-                    const name =
-                        account.dataset.name;
-
-                    showToast(
-                        "أضف رابط حساب " +
-                        name
-                    );
-                }
-
-            }
-        );
-
-    });
-
-
-// ========================================
-// Toast
-// ========================================
-
-function showToast(message) {
-
-    toast.textContent =
-        message;
-
-    toast.classList.add(
-        "show"
+const viewElement =
+    document.getElementById(
+        "viewCount"
     );
 
-    clearTimeout(
-        window.toastTimer
+
+let views =
+    Number(
+        localStorage.getItem(
+            "magnum_views"
+        )
+    ) || 0;
+
+
+views++;
+
+
+localStorage.setItem(
+    "magnum_views",
+    views
+);
+
+
+viewElement.textContent =
+    views;
+
+
+
+// ============================================
+// حركة بطاقات الحسابات
+// ============================================
+
+const accounts =
+    document.querySelectorAll(
+        ".account"
     );
 
-    window.toastTimer =
-        setTimeout(
-            () => {
 
-                toast.classList.remove(
-                    "show"
-                );
+accounts.forEach(
+    account => {
 
-            },
-            1800
-        );
-}
-
-
-// ========================================
-// حركة الإضاءة داخل الشريط
-// ========================================
-
-document
-    .querySelectorAll(".account")
-    .forEach(account => {
 
         account.addEventListener(
             "pointermove",
@@ -135,17 +104,38 @@ document
                     event.clientX -
                     rect.left;
 
-                const percentage =
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                const percentX =
                     (x / rect.width) * 100;
+
+                const percentY =
+                    (y / rect.height) * 100;
+
 
                 account.style.background =
 
-                    `linear-gradient(
-                        110deg,
-                        rgba(255,255,255,0.075),
-                        rgba(255,255,255,0.018) ${percentage}%,
-                        rgba(255,255,255,0.035)
-                    )`;
+                    `
+                    radial-gradient(
+                        circle at
+                        ${percentX}%
+                        ${percentY}%,
+                        rgba(
+                            0,
+                            145,
+                            255,
+                            0.12
+                        ),
+                        rgba(
+                            13,
+                            23,
+                            39,
+                            0.72
+                        ) 55%
+                    )
+                    `;
             }
         );
 
@@ -159,79 +149,18 @@ document
             }
         );
 
-    });
-
-
-// ========================================
-// حركة صورة البروفايل
-// ========================================
-
-const profile =
-    document.querySelector(
-        ".profile"
-    );
-
-const profileWrapper =
-    document.querySelector(
-        ".profile-wrapper"
-    );
-
-
-profile.addEventListener(
-    "pointermove",
-    event => {
-
-        const rect =
-            profile.getBoundingClientRect();
-
-        const x =
-            (event.clientX - rect.left) /
-            rect.width -
-            0.5;
-
-        const y =
-            (event.clientY - rect.top) /
-            rect.height -
-            0.5;
-
-        profileWrapper.style.transform =
-
-            `translate(
-                ${x * 5}px,
-                ${y * 5}px
-            )`;
-    }
-);
-
-
-profile.addEventListener(
-    "pointerleave",
-    () => {
-
-        profileWrapper.style.transform =
-            "";
     }
 );
 
 
 
-// ==================================================
-// ⭐ ترتيب الحسابات
-// ==================================================
+// ============================================
+// ترتيب الحسابات
+// ============================================
 //
-// غيّر ترتيب الأسماء هنا فقط.
+// غيّر الترتيب من هنا فقط.
 //
-// الأسماء المتاحة:
-//
-// creators
-// youtube
-// tiktok
-// instagram
-// kick
-// twitch
-// x
-//
-// مثال:
+// المتاح:
 //
 // creators
 // youtube
@@ -241,46 +170,38 @@ profile.addEventListener(
 // twitch
 // x
 //
-// إذا أردت Twitch أول شيء:
-//
-// twitch
-// creators
-// youtube
-// tiktok
-// instagram
-// kick
-// x
-//
-// ==================================================
+// ============================================
 
 
 const ACCOUNT_ORDER = [
 
     "creators",
 
+    "youtube",
+
     "tiktok",
 
-    "youtube",
+    "instagram",
 
     "kick",
 
     "twitch",
 
-    "x",
-
-    "instagram"
+    "x"
 
 ];
 
 
-// ========================================
-// تطبيق الترتيب تلقائيًا
-// ========================================
+
+// ============================================
+// تطبيق الترتيب
+// ============================================
 
 const accountsContainer =
     document.getElementById(
         "accounts"
     );
+
 
 const accountElements =
     Array.from(
@@ -305,8 +226,6 @@ accountElements.forEach(
     }
 );
 
-
-// إعادة ترتيب البطاقات
 
 ACCOUNT_ORDER.forEach(
     id => {
