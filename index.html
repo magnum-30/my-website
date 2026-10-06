@@ -1,39 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
-    <meta name="theme-color" content="#050608">
+    <meta name="theme-color" content="#050b18">
 
-    <title>ماقنوم | حساباتي</title>
+    <title>Magnum | حساباتي</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <div class="background-glow glow-one"></div>
-    <div class="background-glow glow-two"></div>
 
-    <div class="particles" id="particles"></div>
+    <!-- =========================
+         الخلفية
+    ========================== -->
 
-    <div class="noise"></div>
+    <div class="background">
+
+        <div class="blue-glow glow-1"></div>
+        <div class="blue-glow glow-2"></div>
+        <div class="blue-glow glow-3"></div>
+
+        <div id="particles"></div>
+
+    </div>
 
 
-    <main class="page">
+    <!-- =========================
+         المحتوى
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- زر القائمة -->
+
+        <button
+            class="menu-button"
+            aria-label="القائمة"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+
+        <!-- سهم أعلى الصفحة -->
+
+        <div class="top-arrow">
+            <span>←</span>
+        </div>
+
 
         <!-- =========================
              البروفايل
@@ -41,33 +79,75 @@
 
         <section class="profile">
 
-            <div class="profile-wrapper">
 
-                <div class="profile-halo"></div>
+            <div class="avatar-area">
 
-                <div class="profile-image-container">
+                <div class="avatar-outer-glow"></div>
+
+                <div class="avatar-ring ring-one"></div>
+
+                <div class="avatar-ring ring-two"></div>
+
+                <div class="avatar-ring ring-three"></div>
+
+                <div class="avatar">
 
                     <img
                         src="magnum.png"
-                        alt="ماقنوم"
-                        class="profile-image"
+                        alt="Magnum"
                     >
 
                 </div>
 
             </div>
 
-            <h1>Magnum</h1>
 
-            <p class="description">
-                حساباتي وروابطي الرسمية
-            </p>
+            <div class="profile-name">
 
-            <div class="small-line">
-                <span></span>
-                <i>✦</i>
-                <span></span>
+                <span class="verified">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </span>
+
+                <h1>
+                    Magnum
+                </h1>
+
             </div>
+
+
+            <div class="profile-divider">
+
+                <span></span>
+
+                <i>✦</i>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- عداد الزيارات -->
+
+            <div class="views">
+
+                <span>
+                    زيارة
+                </span>
+
+                <strong id="viewCount">
+                    0
+                </strong>
+
+                <span class="eye">
+                    ◉
+                </span>
+
+            </div>
+
 
         </section>
 
@@ -76,34 +156,53 @@
              الحسابات
         ========================== -->
 
-        <section class="accounts" id="accounts">
+        <section
+            class="accounts"
+            id="accounts"
+        >
 
 
             <!-- Creators -->
 
             <a
                 class="account"
+                data-id="creators"
+                data-name="Creators"
                 href="https://creators.sa/"
                 target="_blank"
                 rel="noopener noreferrer"
-                data-id="creators"
-                data-name="Creators"
             >
 
-                <span class="account-name">
-                    Creators
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box creators">
+                    <div class="account-text">
 
-                    <img
-                        src="creators.png"
-                        alt="Creators"
-                    >
+                        <strong>
+                            Creators
+                        </strong>
+
+                        <span>
+                            creators.sa
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo creators">
+
+                        <img
+                            src="creators.png"
+                            alt="Creators"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -112,25 +211,43 @@
 
             <a
                 class="account"
-                href="https://youtube.com/@magnum_3_0"
                 data-id="youtube"
                 data-name="YouTube"
+                href="https://www.youtube.com/@magnum_3_0"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    YouTube
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box youtube">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/youtube/FFFFFF"
-                        alt="YouTube"
-                    >
+                        <strong>
+                            YouTube
+                        </strong>
+
+                        <span>
+                            youtube.com/@magnum_3_0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo youtube">
+
+                        <img
+                            src="https://cdn.simpleicons.org/youtube/FFFFFF"
+                            alt="YouTube"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -139,25 +256,43 @@
 
             <a
                 class="account"
-                href="https://www.tiktok.com/@magnum_3_0"
                 data-id="tiktok"
                 data-name="TikTok"
+                href="https://www.tiktok.com/@magnum_3_0"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    TikTok
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box tiktok">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/tiktok/FFFFFF"
-                        alt="TikTok"
-                    >
+                        <strong>
+                            TikTok
+                        </strong>
+
+                        <span>
+                            tiktok.com/@magnum_3_0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo tiktok">
+
+                        <img
+                            src="https://cdn.simpleicons.org/tiktok/FFFFFF"
+                            alt="TikTok"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -166,25 +301,43 @@
 
             <a
                 class="account"
-                href="https://www.instagram.com/magnum_3_0"
                 data-id="instagram"
                 data-name="Instagram"
+                href="https://www.instagram.com/magnum_3_0/"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    Instagram
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box instagram">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/instagram/FFFFFF"
-                        alt="Instagram"
-                    >
+                        <strong>
+                            Instagram
+                        </strong>
+
+                        <span>
+                            instagram.com/magnum_3_0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo instagram">
+
+                        <img
+                            src="https://cdn.simpleicons.org/instagram/FFFFFF"
+                            alt="Instagram"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -193,25 +346,43 @@
 
             <a
                 class="account"
-                href="https://kick.com/magnum-3-0"
                 data-id="kick"
                 data-name="Kick"
+                href="https://kick.com/magnum-3-0"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    Kick
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box kick">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/kick/FFFFFF"
-                        alt="Kick"
-                    >
+                        <strong>
+                            Kick
+                        </strong>
+
+                        <span>
+                            kick.com/magnum-3-0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo kick">
+
+                        <img
+                            src="https://cdn.simpleicons.org/kick/FFFFFF"
+                            alt="Kick"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -220,25 +391,43 @@
 
             <a
                 class="account"
-                href="https://www.twitch.tv/magnum_3_0"
                 data-id="twitch"
                 data-name="Twitch"
+                href="https://www.twitch.tv/magnum_3_0"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    Twitch
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box twitch">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/twitch/FFFFFF"
-                        alt="Twitch"
-                    >
+                        <strong>
+                            Twitch
+                        </strong>
+
+                        <span>
+                            twitch.tv/magnum_3_0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo twitch">
+
+                        <img
+                            src="https://cdn.simpleicons.org/twitch/FFFFFF"
+                            alt="Twitch"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
 
@@ -247,27 +436,46 @@
 
             <a
                 class="account"
-                href="https://x.com/Magnum_3_0"
                 data-id="x"
                 data-name="X"
+                href="https://x.com/magnum_3_0"
+                target="_blank"
+                rel="noopener noreferrer"
             >
 
-                <span class="account-name">
-                    X
-                </span>
+                <div class="account-content">
 
-                <div class="logo-box x">
+                    <div class="account-text">
 
-                    <img
-                        src="https://cdn.simpleicons.org/x/FFFFFF"
-                        alt="X"
-                    >
+                        <strong>
+                            X
+                        </strong>
+
+                        <span>
+                            x.com/magnum_3_0
+                        </span>
+
+                    </div>
+
+                    <div class="account-logo x">
+
+                        <img
+                            src="https://cdn.simpleicons.org/x/FFFFFF"
+                            alt="X"
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="shine"></div>
+                <span class="account-arrow">
+                    ‹
+                </span>
+
+                <div class="card-shine"></div>
 
             </a>
+
 
         </section>
 
@@ -278,24 +486,18 @@
 
         <footer>
 
-            <span>MAGNUM</span>
-
-            <b>✦</b>
-
-            <span>ماقنوم</span>
+            <span>
+                Magnum ©
+            </span>
 
         </footer>
 
+
     </main>
-
-
-    <div
-        class="toast"
-        id="toast"
-    ></div>
 
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
