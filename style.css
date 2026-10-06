@@ -1,92 +1,56 @@
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
-}
-
-
-:root {
-
-    --bg: #02050b;
-
-    --blue-1: #008cff;
-    --blue-2: #006eff;
-    --blue-3: #00b7ff;
-
-    --blue-soft:
-        rgba(0, 140, 255, 0.18);
-
-    --blue-glow:
-        rgba(0, 140, 255, 0.35);
-
-    --text: #f3f7ff;
-
-    --muted:
-        rgba(207, 220, 239, 0.55);
-
-    --card:
-        rgba(12, 18, 30, 0.66);
-
-    --border:
-        rgba(120, 178, 255, 0.20);
-}
-
-
-html,
-body {
-
     margin: 0;
-
     padding: 0;
-
-    width: 100%;
-
-    min-height: 100%;
-
-    background: var(--bg);
+    -webkit-tap-highlight-color: transparent;
 }
 
+html {
+    width: 100%;
+    min-height: 100%;
+    background: #02050b;
+}
 
 body {
+    width: 100%;
+    min-height: 100vh;
 
-    font-family:
-        "Cairo",
-        Arial,
-        sans-serif;
+    font-family: "Cairo", Arial, sans-serif;
 
-    color: var(--text);
+    color: #f5f9ff;
 
     overflow-x: hidden;
 
     background:
-
         radial-gradient(
-            circle at 50% 12%,
-            rgba(0, 110, 255, 0.13),
-            transparent 32%
-        ),
-
-        radial-gradient(
-            circle at 10% 60%,
-            rgba(0, 180, 255, 0.08),
+            circle at 50% 10%,
+            rgba(0, 132, 255, 0.14),
             transparent 30%
         ),
-
+        radial-gradient(
+            circle at 5% 55%,
+            rgba(0, 183, 255, 0.08),
+            transparent 28%
+        ),
         linear-gradient(
             180deg,
-            #03070f 0%,
-            #050914 50%,
-            #02040a 100%
+            #030711 0%,
+            #02050b 55%,
+            #010308 100%
         );
 }
 
 
-/* =====================================
-   الخلفية
-===================================== */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 .background {
-
     position: fixed;
-
     inset: 0;
 
     overflow: hidden;
@@ -97,354 +61,307 @@ body {
 }
 
 
-.blue-glow {
+/* الهالات */
 
+.aurora {
     position: absolute;
+
+    width: 380px;
+    height: 380px;
 
     border-radius: 50%;
 
-    filter: blur(90px);
+    filter: blur(100px);
 
-    opacity: 0.35;
+    opacity: 0.22;
 
     animation:
-        glowMove
-        8s
+        floatingGlow
+        10s
         ease-in-out
         infinite
         alternate;
 }
 
-
-.glow-1 {
-
-    width: 300px;
-
-    height: 300px;
-
-    top: -150px;
-
+.aurora-one {
+    top: -190px;
     left: -100px;
 
-    background:
-        rgba(0, 115, 255, 0.45);
+    background: #006eff;
 }
 
-
-.glow-2 {
-
-    width: 340px;
-
-    height: 340px;
-
-    right: -170px;
-
+.aurora-two {
     top: 35%;
+    right: -220px;
 
-    background:
-        rgba(0, 190, 255, 0.28);
+    width: 420px;
+    height: 420px;
 
-    animation-delay:
-        -3s;
+    background: #00b7ff;
+
+    animation-delay: -3s;
+}
+
+.aurora-three {
+    bottom: -220px;
+    left: 20%;
+
+    width: 360px;
+    height: 360px;
+
+    background: #0758ff;
+
+    animation-delay: -6s;
 }
 
 
-.glow-3 {
+@keyframes floatingGlow {
 
-    width: 280px;
-
-    height: 280px;
-
-    left: 15%;
-
-    bottom: -160px;
-
-    background:
-        rgba(20, 75, 255, 0.30);
-
-    animation-delay:
-        -5s;
-}
-
-
-@keyframes glowMove {
-
-    from {
-
-        transform:
-            translate3d(
-                0,
-                0,
-                0
-            )
-            scale(1);
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.9);
     }
 
-    to {
-
-        transform:
-            translate3d(
-                25px,
-                -20px,
-                0
-            )
-            scale(1.12);
+    100% {
+        transform: translate3d(35px, -25px, 0) scale(1.12);
     }
 }
 
 
-/* =====================================
-   الجزيئات
-===================================== */
+/* شبكة خفيفة */
+
+.grid {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.08;
+
+    background-image:
+        linear-gradient(
+            rgba(80, 160, 255, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(80, 160, 255, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 75%
+        );
+}
+
+
+/* الجزيئات */
+
+#particles {
+    position: absolute;
+    inset: 0;
+}
 
 .particle {
-
     position: absolute;
 
-    width: 4px;
+    width: 3px;
+    height: 3px;
 
-    height: 7px;
+    border-radius: 50%;
 
-    border-radius: 100%;
-
-    background:
-        rgba(112, 197, 255, 0.75);
+    background: #8bd7ff;
 
     box-shadow:
-        0 0 10px
-        rgba(0, 153, 255, 0.8);
+        0 0 8px #008cff,
+        0 0 18px rgba(0, 140, 255, 0.7);
 
     opacity: 0;
 
     animation:
-        particleFloat
+        particleMove
         linear
         infinite;
 }
 
 
-@keyframes particleFloat {
+@keyframes particleMove {
 
     0% {
-
-        transform:
-            translateY(110vh)
-            rotate(0deg);
-
+        transform: translateY(110vh) translateX(0);
         opacity: 0;
     }
 
     10% {
-
         opacity: 0.8;
     }
 
-    85% {
-
+    80% {
         opacity: 0.35;
     }
 
     100% {
-
         transform:
-            translateY(-20vh)
-            translateX(60px)
-            rotate(240deg);
+            translateY(-15vh)
+            translateX(80px);
 
         opacity: 0;
     }
 }
 
 
-/* =====================================
-   الحاوية
-===================================== */
+/* =========================================================
+   PAGE
+========================================================= */
 
-.container {
-
+.page {
     position: relative;
 
     z-index: 2;
 
-    width:
-        min(
-            620px,
-            calc(100% - 32px)
-        );
+    width: min(590px, calc(100% - 28px));
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
     padding:
-        35px
+        30px
         0
-        28px;
+        35px;
 }
 
 
-/* =====================================
-   زر القائمة
-===================================== */
+/* =========================================================
+   MENU
+========================================================= */
 
 .menu-button {
-
     position: fixed;
 
-    top: 25px;
+    top: 20px;
+    left: 18px;
 
-    left: 25px;
+    z-index: 10;
 
-    z-index: 20;
-
-    width: 38px;
-
-    height: 38px;
-
-    padding: 0;
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 5px;
 
-    border: 0;
-
-    background: transparent;
-
-    cursor: pointer;
-}
-
-
-.menu-button span {
-
-    width: 23px;
-
-    height: 3px;
-
-    border-radius: 20px;
-
-    background:
-        #d8e9ff;
-
-    box-shadow:
-        0 0 10px
-        rgba(0, 150, 255, 0.35);
-}
-
-
-/* =====================================
-   السهم
-===================================== */
-
-.top-arrow {
-
-    position: fixed;
-
-    top: 21px;
-
-    right: 24px;
-
-    z-index: 20;
-
-    width: 40px;
-
-    height: 40px;
-
-    display: grid;
-
-    place-items: center;
-
-    color: #eef7ff;
-
-    font-size: 35px;
-
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-
-/* =====================================
-   البروفايل
-===================================== */
-
-.profile {
-
-    text-align: center;
-
-    margin-bottom: 30px;
-}
-
-
-/* =====================================
-   الأفاتار
-===================================== */
-
-.avatar-area {
-
-    position: relative;
-
-    width: 225px;
-
-    height: 225px;
-
-    margin:
-        5px
-        auto
-        20px;
-
-    display: grid;
-
-    place-items: center;
-}
-
-
-/* الهالة الكبيرة */
-
-.avatar-outer-glow {
-
-    position: absolute;
-
-    width: 205px;
-
-    height: 205px;
+    border: 1px solid rgba(120, 190, 255, 0.12);
 
     border-radius: 50%;
 
     background:
-        rgba(0, 132, 255, 0.13);
+        rgba(5, 13, 25, 0.48);
 
-    filter: blur(25px);
+    backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.menu-button span {
+    width: 19px;
+    height: 2px;
+
+    border-radius: 20px;
+
+    background: #dceeff;
+
+    box-shadow:
+        0 0 8px rgba(0, 145, 255, 0.35);
+
+    transition: 0.25s ease;
+}
+
+.menu-button:hover {
+    transform: scale(1.08);
+
+    border-color:
+        rgba(70, 170, 255, 0.4);
+
+    box-shadow:
+        0 0 25px rgba(0, 125, 255, 0.15);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile {
+    text-align: center;
+
+    padding-top: 10px;
+
+    margin-bottom: 27px;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.avatar-wrapper {
+    position: relative;
+
+    width: 215px;
+    height: 215px;
+
+    margin: 0 auto 19px;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+/* الهالة */
+
+.avatar-halo {
+    position: absolute;
+
+    width: 175px;
+    height: 175px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 132, 255, 0.18);
+
+    filter: blur(28px);
 
     animation:
-        avatarGlow
+        avatarPulse
         3.5s
         ease-in-out
         infinite;
 }
 
 
-@keyframes avatarGlow {
+@keyframes avatarPulse {
 
     0%,
     100% {
-
-        transform:
-            scale(0.94);
-
-        opacity: 0.65;
+        transform: scale(0.92);
+        opacity: 0.55;
     }
 
     50% {
-
-        transform:
-            scale(1.08);
-
+        transform: scale(1.08);
         opacity: 1;
     }
 }
@@ -453,7 +370,6 @@ body {
 /* الحلقات */
 
 .avatar-ring {
-
     position: absolute;
 
     border-radius: 50%;
@@ -461,87 +377,70 @@ body {
     pointer-events: none;
 }
 
-
-.ring-one {
-
-    width: 218px;
-
-    height: 218px;
+.ring-1 {
+    width: 211px;
+    height: 211px;
 
     border:
         1px solid
-        rgba(93, 181, 255, 0.32);
+        rgba(65, 177, 255, 0.28);
 
     box-shadow:
         0 0 25px
-        rgba(0, 140, 255, 0.22);
+        rgba(0, 135, 255, 0.18);
 
     animation:
-        ringRotate
-        16s
+        rotateRing
+        18s
         linear
         infinite;
 }
 
-
-.ring-two {
-
-    width: 202px;
-
-    height: 202px;
+.ring-2 {
+    width: 198px;
+    height: 198px;
 
     border:
         1px dashed
-        rgba(82, 177, 255, 0.35);
+        rgba(40, 155, 255, 0.28);
 
     animation:
-        ringRotateReverse
-        20s
+        rotateRingReverse
+        23s
         linear
         infinite;
 }
 
-
-.ring-three {
-
-    width: 190px;
-
-    height: 190px;
+.ring-3 {
+    width: 187px;
+    height: 187px;
 
     border:
         1px solid
-        rgba(150, 215, 255, 0.15);
+        rgba(135, 215, 255, 0.13);
 }
 
 
-@keyframes ringRotate {
+@keyframes rotateRing {
 
     from {
-
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 
     to {
-
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
 
-@keyframes ringRotateReverse {
+@keyframes rotateRingReverse {
 
     from {
-
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 
     to {
-
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 }
 
@@ -549,44 +448,35 @@ body {
 /* الصورة */
 
 .avatar {
-
     position: relative;
 
     z-index: 5;
 
-    width: 178px;
-
-    height: 178px;
+    width: 174px;
+    height: 174px;
 
     padding: 4px;
 
     border-radius: 50%;
 
     background:
-
         linear-gradient(
             135deg,
-            #9bddff,
-            #006eff 45%,
-            #06245d
+            #b8eaff 0%,
+            #008cff 45%,
+            #063a87 100%
         );
 
     box-shadow:
-
-        0 0 25px
-        rgba(0, 136, 255, 0.5),
-
-        0 0 70px
-        rgba(0, 104, 255, 0.25);
+        0 0 28px rgba(0, 140, 255, 0.45),
+        0 0 70px rgba(0, 105, 255, 0.2);
 }
 
 
 .avatar img {
-
     display: block;
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -599,56 +489,43 @@ body {
 }
 
 
-/* =====================================
-   الاسم
-===================================== */
+/* =========================================================
+   NAME
+========================================================= */
 
-.profile-name {
-
+.name-row {
     display: flex;
 
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
-
-    gap: 10px;
+    gap: 9px;
 
     direction: rtl;
 }
 
+.name-row h1 {
+    color: #f7fbff;
 
-.profile-name h1 {
+    font-size: 38px;
 
-    margin: 0;
+    font-weight: 800;
 
-    font-family:
-        "Cairo",
-        sans-serif;
+    line-height: 1.2;
 
-    font-size: 39px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
-
-    color: #f3f8ff;
+    letter-spacing: 0.3px;
 
     text-shadow:
-
-        0 0 20px
-        rgba(0, 140, 255, 0.18);
+        0 0 22px
+        rgba(0, 145, 255, 0.2);
 }
 
 
-/* =====================================
-   التوثيق
-===================================== */
+/* التوثيق */
 
 .verified {
-
-    width: 33px;
-
-    height: 33px;
+    width: 27px;
+    height: 27px;
 
     display: grid;
 
@@ -657,28 +534,21 @@ body {
     border-radius: 50%;
 
     background:
-
         linear-gradient(
-            145deg,
-            #28b8ff,
-            #006cff
+            135deg,
+            #31c4ff,
+            #0078ff
         );
 
     box-shadow:
-
         0 0 15px
-        rgba(0, 153, 255, 0.75),
-
-        0 0 30px
-        rgba(0, 110, 255, 0.28);
+        rgba(0, 140, 255, 0.42);
 }
 
-
-.check {
-
+.verified span {
     color: white;
 
-    font-size: 20px;
+    font-size: 16px;
 
     font-weight: 800;
 
@@ -686,730 +556,638 @@ body {
 }
 
 
-/* =====================================
-   الخط
-===================================== */
+/* الوصف */
 
-.profile-divider {
+.bio {
+    margin-top: 5px;
 
-    width: 115px;
+    color:
+        rgba(210, 228, 248, 0.52);
 
-    margin:
-        18px
-        auto
-        15px;
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* الخط */
+
+.profile-line {
+    width: min(260px, 75%);
+
+    margin: 17px auto 12px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: center;
-
-    gap: 8px;
+    gap: 10px;
 }
 
-
-.profile-divider span {
-
+.profile-line span {
     height: 1px;
 
     flex: 1;
 
     background:
-
         linear-gradient(
             90deg,
             transparent,
-            rgba(148, 210, 255, 0.75)
-        );
-}
-
-
-.profile-divider span:last-child {
-
-    background:
-
-        linear-gradient(
-            90deg,
-            rgba(148, 210, 255, 0.75),
+            rgba(82, 170, 255, 0.35),
             transparent
         );
 }
 
+.profile-line i {
+    color: #59c8ff;
 
-.profile-divider i {
-
-    color: #8ed7ff;
-
-    font-size: 10px;
+    font-size: 12px;
 
     font-style: normal;
 
     text-shadow:
-        0 0 10px
-        rgba(0, 170, 255, 0.8);
+        0 0 12px
+        rgba(0, 166, 255, 0.7);
 }
 
 
-/* =====================================
-   الزيارات
-===================================== */
+/* الزيارات */
 
 .views {
-
-    width: 145px;
-
-    height: 55px;
-
-    margin: 0 auto;
-
     display: flex;
 
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
+    gap: 6px;
 
-    gap: 9px;
+    color:
+        rgba(207, 224, 244, 0.48);
 
-    border:
-        1px solid
-        rgba(123, 194, 255, 0.24);
+    font-size: 11px;
 
-    border-radius: 30px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(31, 87, 139, 0.16),
-            rgba(8, 19, 35, 0.5)
-        );
-
-    box-shadow:
-
-        inset 0 0 20px
-        rgba(90, 190, 255, 0.025),
-
-        0 0 20px
-        rgba(0, 120, 255, 0.05);
-
-    backdrop-filter:
-        blur(12px);
-
-    color: #b9d9f2;
-
-    font-size: 14px;
+    font-weight: 500;
 }
 
-
 .views strong {
-
-    color: white;
-
-    font-size: 20px;
+    color:
+        rgba(230, 242, 255, 0.78);
 
     font-weight: 700;
 }
 
+.views-icon {
+    color:
+        rgba(65, 180, 255, 0.65);
 
-.eye {
-
-    color: #80ccff;
-
-    font-size: 19px;
-
-    text-shadow:
-        0 0 10px
-        rgba(0, 160, 255, 0.8);
+    font-size: 10px;
 }
 
 
-/* =====================================
-   الحسابات
-===================================== */
+/* =========================================================
+   ACCOUNTS
+========================================================= */
 
 .accounts {
-
     display: flex;
 
     flex-direction: column;
 
-    gap: 18px;
+    gap: 12px;
 }
 
 
-/* =====================================
-   البطاقة
-===================================== */
+/* البطاقة */
 
 .account {
-
     position: relative;
 
-    display: block;
-
-    width: 100%;
-
-    min-height: 116px;
-
-    padding: 20px 30px;
-
-    overflow: hidden;
-
-    text-decoration: none;
-
-    color: white;
-
-    border:
-        1px solid
-        rgba(126, 196, 255, 0.24);
-
-    border-radius: 26px;
-
-    background:
-
-        linear-gradient(
-            110deg,
-            rgba(13, 23, 39, 0.72),
-            rgba(17, 29, 48, 0.44)
-        );
-
-    box-shadow:
-
-        0 12px 35px
-        rgba(0, 0, 0, 0.35),
-
-        inset 0 0 35px
-        rgba(73, 160, 255, 0.035);
-
-    backdrop-filter:
-        blur(15px);
-
-    transition:
-
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease;
-}
-
-
-.account:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        rgba(117, 200, 255, 0.52);
-
-    box-shadow:
-
-        0 18px 45px
-        rgba(0, 0, 0, 0.40),
-
-        0 0 30px
-        rgba(0, 125, 255, 0.12),
-
-        inset 0 0 30px
-        rgba(55, 160, 255, 0.06);
-}
-
-
-.account:active {
-
-    transform:
-        scale(0.985);
-}
-
-
-/* =====================================
-   محتوى البطاقة
-===================================== */
-
-.account-content {
-
-    width: 100%;
+    min-height: 76px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: flex-start;
+    text-decoration: none;
 
-    direction: rtl;
+    overflow: hidden;
 
-    gap: 18px;
+    padding:
+        10px
+        13px
+        10px
+        17px;
+
+    border:
+        1px solid
+        rgba(110, 178, 255, 0.13);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 27, 45, 0.72),
+            rgba(5, 12, 22, 0.66)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.035),
+
+        0 8px 30px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.28s cubic-bezier(.2,.8,.2,1),
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
 }
 
 
-/* النص */
+/* خط أزرق جانبي */
 
-.account-text {
+.account::before {
+    content: "";
 
+    position: absolute;
+
+    top: 18px;
+    bottom: 18px;
+
+    right: 0;
+
+    width: 2px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #009dff,
+            transparent
+        );
+
+    opacity: 0;
+
+    transform: scaleY(0.4);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* معلومات الحساب */
+
+.account-info {
     flex: 1;
+
+    min-width: 0;
 
     display: flex;
 
     flex-direction: column;
 
-    align-items: flex-end;
-
     justify-content: center;
 
-    padding-right: 10px;
+    text-align: right;
+
+    padding-right: 13px;
+
+    direction: ltr;
 }
 
+.account-info strong {
+    color: #edf6ff;
 
-.account-text strong {
-
-    font-size: 20px;
+    font-size: 15px;
 
     font-weight: 700;
 
     line-height: 1.5;
 
-    color: #f5f9ff;
-
-    text-shadow:
-        0 0 15px
-        rgba(0, 120, 255, 0.08);
+    direction: ltr;
 }
 
-
-.account-text span {
-
-    direction: ltr;
-
-    margin-top: 2px;
-
-    font-size: 14px;
+.account-info span {
+    margin-top: 1px;
 
     color:
-        rgba(191, 211, 232, 0.48);
+        rgba(188, 211, 237, 0.43);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    direction: ltr;
 }
 
 
-/* =====================================
-   الشعار
-===================================== */
+/* الشعار */
 
-.account-logo {
+.account-icon {
+    position: relative;
 
-    flex: 0 0 auto;
+    z-index: 2;
 
-    width: 66px;
+    width: 50px;
+    height: 50px;
 
-    height: 66px;
+    flex: 0 0 50px;
 
     display: grid;
 
     place-items: center;
 
-    border-radius: 18px;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40, 72, 105, 0.5),
+            rgba(9, 20, 34, 0.75)
+        );
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.12);
-
-    background:
-        rgba(10, 17, 28, 0.68);
+        rgba(120, 190, 255, 0.13);
 
     box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.05),
 
-        inset 0 0 20px
-        rgba(255, 255, 255, 0.035),
-
-        0 0 18px
-        rgba(0, 100, 255, 0.05);
+        0 0 22px
+        rgba(0, 125, 255, 0.06);
 
     transition:
-
         transform 0.28s ease,
-        box-shadow 0.28s ease;
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+}
+
+.account-icon img {
+    width: 27px;
+    height: 27px;
+
+    object-fit: contain;
+
+    display: block;
 }
 
 
-.account-logo img {
+/* شعار Creators */
 
-    width: 32px;
+.account-icon.creators img {
+    width: 31px;
+    height: 31px;
 
-    height: 32px;
-
-    display: block;
+    border-radius: 8px;
 
     object-fit: contain;
 }
 
 
-/* Creators يحافظ على صورته */
-
-.account-logo.creators {
-
-    overflow: hidden;
-}
-
-
-.account-logo.creators img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    border-radius: 17px;
-}
-
-
-/* =====================================
-   ألوان خلفيات الشعارات
-   لا نغيّر الشعار نفسه
-===================================== */
-
-.youtube {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 0, 0, 0.13),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.tiktok {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.07),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.instagram {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(205, 70, 170, 0.13),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.kick {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(83, 240, 105, 0.11),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.twitch {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(145, 70, 255, 0.16),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.x {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.07),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-.creators {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(40, 170, 255, 0.11),
-            rgba(10, 17, 28, 0.75)
-        );
-}
-
-
-/* =====================================
-   حركة الشعار
-===================================== */
-
-.account:hover .account-logo {
-
-    transform:
-        scale(1.07)
-        rotate(-2deg);
-
-    box-shadow:
-
-        0 0 25px
-        rgba(0, 145, 255, 0.15),
-
-        inset 0 0 20px
-        rgba(255, 255, 255, 0.05);
-}
-
-
-/* =====================================
-   السهم
-===================================== */
+/* السهم */
 
 .account-arrow {
+    position: relative;
 
-    position: absolute;
+    z-index: 3;
 
-    left: 25px;
+    margin-left: 10px;
 
-    top: 50%;
+    color:
+        rgba(170, 205, 238, 0.4);
 
-    transform:
-        translateY(-50%);
+    font-family: Arial, sans-serif;
 
-    font-size: 37px;
+    font-size: 27px;
+
+    font-weight: 300;
 
     line-height: 1;
 
-    color:
-        rgba(177, 212, 241, 0.52);
+    transform: translateX(0);
 
     transition:
-
         color 0.25s ease,
         transform 0.25s ease;
 }
 
 
-.account:hover .account-arrow {
+/* اللمعة */
 
-    color: #8fd6ff;
-
-    transform:
-        translateY(-50%)
-        translateX(-4px);
-}
-
-
-/* =====================================
-   اللمعة
-===================================== */
-
-.card-shine {
-
+.shine {
     position: absolute;
 
-    top: -30%;
+    top: 0;
+    bottom: 0;
 
-    left: -80%;
+    left: -100%;
 
     width: 45%;
 
-    height: 160%;
-
-    pointer-events: none;
-
     background:
-
         linear-gradient(
             90deg,
             transparent,
-            rgba(145, 215, 255, 0.10),
+            rgba(255,255,255,0.08),
             transparent
         );
 
-    transform:
-        rotate(18deg);
+    transform: skewX(-18deg);
 
     transition:
-        left 0.8s ease;
+        left 0.65s ease;
+
+    pointer-events: none;
 }
 
 
-.account:hover .card-shine {
+/* =========================================================
+   HOVER
+========================================================= */
 
-    left: 130%;
+.account:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(45, 159, 255, 0.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13, 34, 59, 0.82),
+            rgba(5, 14, 27, 0.76)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.045),
+
+        0 12px 35px
+        rgba(0, 85, 170, 0.16),
+
+        0 0 28px
+        rgba(0, 135, 255, 0.07);
+}
+
+.account:hover::before {
+    opacity: 1;
+
+    transform: scaleY(1);
+}
+
+.account:hover .account-icon {
+    transform: scale(1.06);
+
+    border-color:
+        rgba(60, 174, 255, 0.35);
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 135, 255, 0.16);
+}
+
+.account:hover .account-arrow {
+    color: #6bcfff;
+
+    transform:
+        translateX(-4px);
+}
+
+.account:hover .shine {
+    left: 150%;
 }
 
 
-/* =====================================
-   الفوتر
-===================================== */
+/* الضغط */
+
+.account:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
+    padding-top: 24px;
 
     text-align: center;
 
-    margin-top: 28px;
-
     color:
-        rgba(157, 184, 211, 0.45);
+        rgba(166, 196, 225, 0.22);
 
-    font-size: 12px;
+    font-size: 10px;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 0.5px;
 }
 
 
-/* =====================================
-   الجوال
-===================================== */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
 
-    .container {
+    .page {
+        width: min(
+            100% - 22px,
+            500px
+        );
 
-        width:
-            calc(100% - 28px);
-
-        padding-top: 55px;
+        padding-top: 25px;
     }
 
+    .profile {
+        padding-top: 9px;
 
-    .menu-button {
-
-        left: 14px;
-
-        top: 19px;
+        margin-bottom: 24px;
     }
 
+    .avatar-wrapper {
+        width: 194px;
+        height: 194px;
 
-    .top-arrow {
-
-        right: 14px;
-
-        top: 16px;
+        margin-bottom: 16px;
     }
-
-
-    .avatar-area {
-
-        width: 210px;
-
-        height: 210px;
-    }
-
 
     .avatar {
-
-        width: 166px;
-
-        height: 166px;
+        width: 158px;
+        height: 158px;
     }
 
-
-    .ring-one {
-
-        width: 204px;
-
-        height: 204px;
+    .avatar-halo {
+        width: 160px;
+        height: 160px;
     }
 
-
-    .ring-two {
-
-        width: 190px;
-
-        height: 190px;
+    .ring-1 {
+        width: 191px;
+        height: 191px;
     }
 
-
-    .ring-three {
-
-        width: 178px;
-
-        height: 178px;
+    .ring-2 {
+        width: 180px;
+        height: 180px;
     }
 
+    .ring-3 {
+        width: 170px;
+        height: 170px;
+    }
 
-    .profile-name h1 {
-
+    .name-row h1 {
         font-size: 34px;
     }
 
-
     .verified {
-
-        width: 30px;
-
-        height: 30px;
+        width: 25px;
+        height: 25px;
     }
-
 
     .account {
+        min-height: 72px;
 
-        min-height: 106px;
+        border-radius: 20px;
 
         padding:
-            17px
-            22px;
+            9px
+            11px
+            9px
+            14px;
     }
 
+    .account-icon {
+        width: 47px;
+        height: 47px;
 
-    .account-logo {
+        flex-basis: 47px;
 
-        width: 61px;
-
-        height: 61px;
-
-        border-radius: 17px;
+        border-radius: 15px;
     }
 
-
-    .account-logo.creators img {
-
-        border-radius: 16px;
+    .account-icon img {
+        width: 25px;
+        height: 25px;
     }
 
-
-    .account-text strong {
-
-        font-size: 18px;
+    .account-info strong {
+        font-size: 14px;
     }
 
-
-    .account-text span {
-
-        max-width: 180px;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        white-space: nowrap;
-
-        font-size: 12px;
+    .account-info span {
+        font-size: 9px;
     }
-
 
     .account-arrow {
+        font-size: 25px;
 
-        left: 17px;
-
-        font-size: 32px;
+        margin-left: 7px;
     }
 
+    .menu-button {
+        top: 14px;
+        left: 13px;
+
+        width: 39px;
+        height: 39px;
+    }
 }
 
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .page {
+        width: calc(100% - 18px);
+
+        padding-top: 21px;
+    }
+
+    .avatar-wrapper {
+        width: 178px;
+        height: 178px;
+    }
+
+    .avatar {
+        width: 145px;
+        height: 145px;
+    }
+
+    .avatar-halo {
+        width: 145px;
+        height: 145px;
+    }
+
+    .ring-1 {
+        width: 176px;
+        height: 176px;
+    }
+
+    .ring-2 {
+        width: 166px;
+        height: 166px;
+    }
+
+    .ring-3 {
+        width: 156px;
+        height: 156px;
+    }
+
+    .name-row h1 {
+        font-size: 31px;
+    }
+
+    .account {
+        min-height: 68px;
+    }
+
+    .account-icon {
+        width: 44px;
+        height: 44px;
+
+        flex-basis: 44px;
+    }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
 
-        animation: none !important;
+        scroll-behavior: auto !important;
 
-        transition: none !important;
+        transition-duration: 0.01ms !important;
     }
 }
