@@ -1,177 +1,103 @@
-// ============================================
-// الجزيئات الزرقاء
-// ============================================
+/* =========================================================
+   MAGNUM
+   JavaScript
+========================================================= */
+
+
+/* =========================================================
+   الجزيئات
+========================================================= */
 
 const particlesContainer =
     document.getElementById("particles");
 
+const PARTICLE_COUNT = 22;
 
-const particleCount = 24;
 
+function createParticles() {
 
-for (
-    let i = 0;
-    i < particleCount;
-    i++
-) {
+    if (!particlesContainer) return;
 
-    const particle =
-        document.createElement("span");
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
 
-    particle.className =
-        "particle";
+        const particle =
+            document.createElement("span");
 
-    particle.style.left =
-        Math.random() * 100 + "%";
+        particle.className = "particle";
 
-    particle.style.animationDuration =
-        (8 + Math.random() * 10) + "s";
+        const size =
+            Math.random() * 2.5 + 1.5;
 
-    particle.style.animationDelay =
-        (-Math.random() * 12) + "s";
+        const left =
+            Math.random() * 100;
 
-    particle.style.transform =
-        `rotate(${Math.random() * 360}deg)`;
+        const duration =
+            Math.random() * 12 + 9;
 
-    particle.style.opacity =
-        0.3 + Math.random() * 0.5;
+        const delay =
+            Math.random() * -20;
 
-    particlesContainer.appendChild(
-        particle
-    );
+        particle.style.width =
+            `${size}px`;
+
+        particle.style.height =
+            `${size}px`;
+
+        particle.style.left =
+            `${left}%`;
+
+        particle.style.animationDuration =
+            `${duration}s`;
+
+        particle.style.animationDelay =
+            `${delay}s`;
+
+        particlesContainer.appendChild(
+            particle
+        );
+    }
 }
 
+createParticles();
 
 
-// ============================================
-// عداد الزيارات
-// ============================================
-//
-// هذا العداد محلي على الجهاز.
-// يعني كل متصفح يحفظ عداده الخاص.
-// ============================================
+/* =========================================================
+   عداد الزيارات
+========================================================= */
 
-const viewElement =
-    document.getElementById(
-        "viewCount"
+const viewCounter =
+    document.getElementById("viewCount");
+
+
+function updateViews() {
+
+    if (!viewCounter) return;
+
+    let views =
+        Number(
+            localStorage.getItem(
+                "magnum_views"
+            )
+        ) || 0;
+
+    views++;
+
+    localStorage.setItem(
+        "magnum_views",
+        views
     );
 
+    viewCounter.textContent =
+        views.toLocaleString("en-US");
+}
 
-let views =
-    Number(
-        localStorage.getItem(
-            "magnum_views"
-        )
-    ) || 0;
+updateViews();
 
 
-views++;
-
-
-localStorage.setItem(
-    "magnum_views",
-    views
-);
-
-
-viewElement.textContent =
-    views;
-
-
-
-// ============================================
-// حركة بطاقات الحسابات
-// ============================================
-
-const accounts =
-    document.querySelectorAll(
-        ".account"
-    );
-
-
-accounts.forEach(
-    account => {
-
-
-        account.addEventListener(
-            "pointermove",
-            event => {
-
-                const rect =
-                    account.getBoundingClientRect();
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-                const percentX =
-                    (x / rect.width) * 100;
-
-                const percentY =
-                    (y / rect.height) * 100;
-
-
-                account.style.background =
-
-                    `
-                    radial-gradient(
-                        circle at
-                        ${percentX}%
-                        ${percentY}%,
-                        rgba(
-                            0,
-                            145,
-                            255,
-                            0.12
-                        ),
-                        rgba(
-                            13,
-                            23,
-                            39,
-                            0.72
-                        ) 55%
-                    )
-                    `;
-            }
-        );
-
-
-        account.addEventListener(
-            "pointerleave",
-            () => {
-
-                account.style.background =
-                    "";
-            }
-        );
-
-    }
-);
-
-
-
-// ============================================
-// ترتيب الحسابات
-// ============================================
-//
-// غيّر الترتيب من هنا فقط.
-//
-// المتاح:
-//
-// creators
-// youtube
-// tiktok
-// instagram
-// kick
-// twitch
-// x
-//
-// ============================================
-
+/* =========================================================
+   ترتيب الحسابات
+   عدّل هذه القائمة فقط لتغيير الترتيب
+========================================================= */
 
 const ACCOUNT_ORDER = [
 
@@ -192,43 +118,39 @@ const ACCOUNT_ORDER = [
 ];
 
 
-
-// ============================================
-// تطبيق الترتيب
-// ============================================
+/* =========================================================
+   تطبيق ترتيب الحسابات
+========================================================= */
 
 const accountsContainer =
-    document.getElementById(
-        "accounts"
-    );
+    document.getElementById("accounts");
 
 
-const accountElements =
-    Array.from(
-        accountsContainer.querySelectorAll(
-            ".account"
-        )
-    );
+function arrangeAccounts() {
 
+    if (!accountsContainer) return;
 
-const accountMap =
-    new Map();
+    const accounts =
+        Array.from(
+            accountsContainer.querySelectorAll(
+                ".account"
+            )
+        );
 
+    const accountMap =
+        new Map();
 
-accountElements.forEach(
-    account => {
+    accounts.forEach(account => {
 
         accountMap.set(
             account.dataset.id,
             account
         );
 
-    }
-);
+    });
 
 
-ACCOUNT_ORDER.forEach(
-    id => {
+    ACCOUNT_ORDER.forEach(id => {
 
         const account =
             accountMap.get(id);
@@ -240,6 +162,157 @@ ACCOUNT_ORDER.forEach(
             );
 
         }
+
+    });
+}
+
+arrangeAccounts();
+
+
+/* =========================================================
+   تأثير إضاءة البطاقة
+========================================================= */
+
+const accountCards =
+    document.querySelectorAll(".account");
+
+
+accountCards.forEach(card => {
+
+    card.addEventListener(
+        "pointermove",
+        event => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            card.style.background = `
+                radial-gradient(
+                    circle at ${x}px ${y}px,
+                    rgba(0, 145, 255, 0.11),
+                    rgba(14, 27, 45, 0.72) 42%,
+                    rgba(5, 12, 22, 0.66)
+                )
+            `;
+        }
+    );
+
+
+    card.addEventListener(
+        "pointerleave",
+        () => {
+
+            card.style.background = "";
+        }
+    );
+
+});
+
+
+/* =========================================================
+   حركة خفيفة للبروفايل
+========================================================= */
+
+const avatarWrapper =
+    document.querySelector(
+        ".avatar-wrapper"
+    );
+
+
+if (avatarWrapper) {
+
+    document.addEventListener(
+        "pointermove",
+        event => {
+
+            const x =
+                (event.clientX / window.innerWidth - 0.5);
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5);
+
+            avatarWrapper.style.transform = `
+                translate3d(
+                    ${x * 4}px,
+                    ${y * 4}px,
+                    0
+                )
+            `;
+        }
+    );
+
+
+    document.addEventListener(
+        "pointerleave",
+        () => {
+
+            avatarWrapper.style.transform =
+                "";
+        }
+    );
+
+}
+
+
+/* =========================================================
+   زر القائمة
+========================================================= */
+
+const menuButton =
+    document.querySelector(
+        ".menu-button"
+    );
+
+
+if (menuButton) {
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.toggle(
+                "menu-active"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   منع سحب الصور
+========================================================= */
+
+document
+    .querySelectorAll("img")
+    .forEach(img => {
+
+        img.setAttribute(
+            "draggable",
+            "false"
+        );
+
+    });
+
+
+/* =========================================================
+   تحميل الصفحة
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document.body.classList.add(
+            "loaded"
+        );
 
     }
 );
